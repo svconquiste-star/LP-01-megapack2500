@@ -90,10 +90,7 @@ const purchaseNotifications: PurchaseNotification[] = generatePurchaseNotificati
 export default function VendasPage() {
   const router = useRouter()
   const [timeLeft, setTimeLeft] = useState('23:59:59')
-  const [showUrgency, setShowUrgency] = useState(true)
-  const [conversionAttempts, setConversionAttempts] = useState(0)
   const [currentNotification, setCurrentNotification] = useState<PurchaseNotification | null>(null)
-  const [notificationIndex, setNotificationIndex] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -202,9 +199,6 @@ export default function VendasPage() {
   ]
 
   const handlePlanClick = (planName: string) => {
-    setSelectedPlan(planName)
-    setConversionAttempts(prev => prev + 1)
-    
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'ViewContent', {
         content_name: planName,
