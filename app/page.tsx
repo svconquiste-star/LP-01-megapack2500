@@ -27,23 +27,65 @@ interface PurchaseNotification {
   plan: string
 }
 
-const purchaseNotifications: PurchaseNotification[] = [
-  { name: 'Carlos Silva', city: 'São Paulo', plan: 'VIP' },
-  { name: 'Ana Santos', city: 'Rio de Janeiro', plan: 'Básico' },
-  { name: 'João Oliveira', city: 'Belo Horizonte', plan: 'VIP' },
-  { name: 'Maria Costa', city: 'Curitiba', plan: 'Normal' },
-  { name: 'Pedro Ferreira', city: 'Porto Alegre', plan: 'Básico' },
-  { name: 'Lucas Martins', city: 'Salvador', plan: 'VIP' },
-  { name: 'Fernanda Rocha', city: 'Brasília', plan: 'Básico' },
-  { name: 'Roberto Alves', city: 'Fortaleza', plan: 'Normal' },
-  { name: 'Juliana Gomes', city: 'Manaus', plan: 'VIP' },
-  { name: 'Marcelo Dias', city: 'Recife', plan: 'Básico' },
-  { name: 'Beatriz Lima', city: 'Goiânia', plan: 'VIP' },
-  { name: 'Felipe Souza', city: 'Belém', plan: 'Normal' },
-  { name: 'Camila Ribeiro', city: 'Maceió', plan: 'Básico' },
-  { name: 'Ricardo Pereira', city: 'Teresina', plan: 'VIP' },
-  { name: 'Gabriela Mendes', city: 'João Pessoa', plan: 'Básico' }
+const brazilianNames = [
+  'Carlos Silva', 'Ana Santos', 'João Oliveira', 'Maria Costa', 'Pedro Ferreira',
+  'Lucas Martins', 'Fernanda Rocha', 'Roberto Alves', 'Juliana Gomes', 'Marcelo Dias',
+  'Beatriz Lima', 'Felipe Souza', 'Camila Ribeiro', 'Ricardo Pereira', 'Gabriela Mendes',
+  'André Barbosa', 'Isabela Teixeira', 'Gustavo Cardoso', 'Patrícia Monteiro', 'Bruno Costa',
+  'Larissa Oliveira', 'Thiago Machado', 'Vanessa Ribeiro', 'Mateus Sousa', 'Leticia Araujo',
+  'Rafael Gomes', 'Mariana Freitas', 'Diego Perez', 'Sophia Carvalho', 'Leonardo Nunes',
+  'Aline Barbosa', 'Vinícius Rocha', 'Fernanda Almeida', 'Rodrigo Martins', 'Carolina Pinto',
+  'Fabio Lopes', 'Juliana Ferreira', 'Cristiano Dias', 'Natalia Costa', 'Sergio Oliveira',
+  'Priscila Gomes', 'Henrique Souza', 'Daniela Ribeiro', 'Leandro Campos', 'Alessandra Moura',
+  'Tiago Mendes', 'Bruna Rocha', 'Paulo Alves', 'Camila Santos', 'Marcos Ferreira'
 ]
+
+const brazilianCities = [
+  'São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre',
+  'Salvador', 'Brasília', 'Fortaleza', 'Manaus', 'Recife',
+  'Goiânia', 'Belém', 'Maceió', 'Teresina', 'João Pessoa',
+  'Natal', 'Aracaju', 'Palmas', 'Rio Branco', 'Boa Vista',
+  'Macapá', 'São Luís', 'Cuiabá', 'Campo Grande', 'Vitória',
+  'Campinas', 'Santos', 'Sorocaba', 'Ribeirão Preto', 'Piracicaba',
+  'Jundiaí', 'Araraquara', 'Bauru', 'Marília', 'Presidente Prudente',
+  'Niterói', 'Duque de Caxias', 'São Gonçalo', 'Nova Iguaçu', 'Itaboraí',
+  'Contagem', 'Betim', 'Montes Claros', 'Uberaba', 'Uberlândia',
+  'Juiz de Fora', 'Divinópolis', 'Poços de Caldas', 'Governador Valadares', 'Ipatinga'
+]
+
+const plans = ['Normal', 'Básico', 'VIP']
+
+const generatePurchaseNotifications = (): PurchaseNotification[] => {
+  const notifications: PurchaseNotification[] = []
+  const usedNameIndices = new Set<number>()
+  const usedCityIndices = new Set<number>()
+
+  for (let i = 0; i < 50; i++) {
+    let nameIndex = Math.floor(Math.random() * brazilianNames.length)
+    while (usedNameIndices.has(nameIndex)) {
+      nameIndex = Math.floor(Math.random() * brazilianNames.length)
+    }
+    usedNameIndices.add(nameIndex)
+
+    let cityIndex = Math.floor(Math.random() * brazilianCities.length)
+    while (usedCityIndices.has(cityIndex)) {
+      cityIndex = Math.floor(Math.random() * brazilianCities.length)
+    }
+    usedCityIndices.add(cityIndex)
+
+    const planIndex = Math.floor(Math.random() * plans.length)
+
+    notifications.push({
+      name: brazilianNames[nameIndex],
+      city: brazilianCities[cityIndex],
+      plan: plans[planIndex]
+    })
+  }
+
+  return notifications
+}
+
+const purchaseNotifications: PurchaseNotification[] = generatePurchaseNotifications()
 
 export default function VendasPage() {
   const router = useRouter()
