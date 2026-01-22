@@ -205,12 +205,6 @@ export default function VendasPage() {
                 <p className="text-white font-bold text-sm">⏰ Oferta por tempo limitado!</p>
                 <p className="text-gray-300 text-xs">Tempo restante: <span className="font-bold text-[#ffd700]">{timeLeft}</span></p>
               </div>
-              <button
-                onClick={() => setShowUrgency(false)}
-                className="text-gray-400 hover:text-white transition-colors flex-shrink-0"
-              >
-                ✕
-              </button>
             </div>
           )}
 
