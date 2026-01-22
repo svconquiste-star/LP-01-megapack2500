@@ -21,12 +21,38 @@ interface PlanData {
   originalPrice?: string
 }
 
+interface PurchaseNotification {
+  name: string
+  city: string
+  plan: string
+}
+
+const purchaseNotifications: PurchaseNotification[] = [
+  { name: 'Carlos Silva', city: 'São Paulo', plan: 'VIP' },
+  { name: 'Ana Santos', city: 'Rio de Janeiro', plan: 'Básico' },
+  { name: 'João Oliveira', city: 'Belo Horizonte', plan: 'VIP' },
+  { name: 'Maria Costa', city: 'Curitiba', plan: 'Normal' },
+  { name: 'Pedro Ferreira', city: 'Porto Alegre', plan: 'Básico' },
+  { name: 'Lucas Martins', city: 'Salvador', plan: 'VIP' },
+  { name: 'Fernanda Rocha', city: 'Brasília', plan: 'Básico' },
+  { name: 'Roberto Alves', city: 'Fortaleza', plan: 'Normal' },
+  { name: 'Juliana Gomes', city: 'Manaus', plan: 'VIP' },
+  { name: 'Marcelo Dias', city: 'Recife', plan: 'Básico' },
+  { name: 'Beatriz Lima', city: 'Goiânia', plan: 'VIP' },
+  { name: 'Felipe Souza', city: 'Belém', plan: 'Normal' },
+  { name: 'Camila Ribeiro', city: 'Maceió', plan: 'Básico' },
+  { name: 'Ricardo Pereira', city: 'Teresina', plan: 'VIP' },
+  { name: 'Gabriela Mendes', city: 'João Pessoa', plan: 'Básico' }
+]
+
 export default function VendasPage() {
   const router = useRouter()
   const [timeLeft, setTimeLeft] = useState('23:59:59')
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
   const [showUrgency, setShowUrgency] = useState(true)
   const [conversionAttempts, setConversionAttempts] = useState(0)
+  const [currentNotification, setCurrentNotification] = useState<PurchaseNotification | null>(null)
+  const [notificationIndex, setNotificationIndex] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -48,6 +74,26 @@ export default function VendasPage() {
     }, 1000)
 
     return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      const notificationTimer = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * purchaseNotifications.length)
+        setCurrentNotification(purchaseNotifications[randomIndex])
+        setNotificationIndex(randomIndex)
+
+        const dismissTimer = setTimeout(() => {
+          setCurrentNotification(null)
+        }, 4000)
+
+        return () => clearTimeout(dismissTimer)
+      }, 12000)
+
+      return () => clearInterval(notificationTimer)
+    }, 3000)
+
+    return () => clearTimeout(delay)
   }, [])
 
   const plans: PlanData[] = [
@@ -657,6 +703,32 @@ export default function VendasPage() {
             </a>
           </div>
         </div>
+
+        {/* Purchase Notification - Social Proof */}
+        {currentNotification && (
+          <div className="fixed bottom-4 left-4 z-40 animate-in fade-in slide-in-from-left-4 duration-300">
+            <div className="bg-gradient-to-r from-[#1a1a2e] to-[#0f1419] border border-[#5a5af6] rounded-lg p-3 sm:p-4 shadow-lg shadow-[#5a5af6]/30 max-w-xs">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0">
+                  <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#5a5af6]/20">
+                    <Check size={16} className="text-[#5a5af6]" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-white font-bold text-xs sm:text-sm">
+                    {currentNotification.name}
+                  </p>
+                  <p className="text-gray-400 text-xs">
+                    {currentNotification.city} comprou o Pacote {currentNotification.plan}
+                  </p>
+                  <p className="text-[#5a5af6] text-xs mt-1 font-semibold">
+                    ✓ Acesso confirmado
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   )

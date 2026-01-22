@@ -68,3 +68,30 @@ select {
 .animate-slide-in-up {
   animation: slideInUp 0.6s ease-out;
 }
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-in {
+  animation: slideInFromLeft 0.3s ease-out;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in-from-left-4 {
+  animation: slideInFromLeft 0.3s ease-out;
+}
+
+.duration-300 {
+  animation-duration: 0.3s;
+}
