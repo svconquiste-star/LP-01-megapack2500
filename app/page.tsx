@@ -90,7 +90,6 @@ const purchaseNotifications: PurchaseNotification[] = generatePurchaseNotificati
 export default function VendasPage() {
   const router = useRouter()
   const [timeLeft, setTimeLeft] = useState('23:59:59')
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null)
   const [showUrgency, setShowUrgency] = useState(true)
   const [conversionAttempts, setConversionAttempts] = useState(0)
   const [currentNotification, setCurrentNotification] = useState<PurchaseNotification | null>(null)
