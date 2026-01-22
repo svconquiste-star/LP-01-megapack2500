@@ -119,7 +119,6 @@ export default function VendasPage() {
       const notificationTimer = setInterval(() => {
         const randomIndex = Math.floor(Math.random() * purchaseNotifications.length)
         setCurrentNotification(purchaseNotifications[randomIndex])
-        setNotificationIndex(randomIndex)
 
         const dismissTimer = setTimeout(() => {
           setCurrentNotification(null)
@@ -279,15 +278,13 @@ export default function VendasPage() {
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Urgency Banner */}
-          {showUrgency && (
-            <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-gradient-to-r from-[#ff6b6b]/20 to-[#ffd700]/20 border border-[#ff6b6b]/50 rounded-xl flex flex-col sm:flex-row items-center gap-2 sm:gap-3 animate-pulse">
-              <AlertCircle className="text-[#ff6b6b] flex-shrink-0" size={20} />
-              <div className="flex-1 text-center sm:text-left">
-                <p className="text-white font-bold text-sm">⏰ Oferta por tempo limitado!</p>
-                <p className="text-gray-300 text-xs">Tempo restante: <span className="font-bold text-[#ffd700]">{timeLeft}</span></p>
-              </div>
+          <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-gradient-to-r from-[#ff6b6b]/20 to-[#ffd700]/20 border border-[#ff6b6b]/50 rounded-xl flex flex-col sm:flex-row items-center gap-2 sm:gap-3 animate-pulse">
+            <AlertCircle className="text-[#ff6b6b] flex-shrink-0" size={20} />
+            <div className="flex-1 text-center sm:text-left">
+              <p className="text-white font-bold text-sm">⏰ Oferta por tempo limitado!</p>
+              <p className="text-gray-300 text-xs">Tempo restante: <span className="font-bold text-[#ffd700]">{timeLeft}</span></p>
             </div>
-          )}
+          </div>
 
           {/* Hero Section with Emotional Appeal */}
           <div className="text-center mb-12 sm:mb-20">
