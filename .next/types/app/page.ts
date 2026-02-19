@@ -1,4 +1,4 @@
-// File: C:\Users\danie\OneDrive\Documentos\DJSA\MODELOS DE SITES\Lp-Vendas-Mega Pack 2500X\app\page.tsx
+// File: C:\Users\danie\OneDrive\Documentos\DJSA\MODELOS DE SITES\Lps-Mega-Pack 2500x\Lp-Vendas-Mega Pack 2500X\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

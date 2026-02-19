@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { ArrowLeft, Check, Lock, Zap, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import Script from 'next/script'
+import { useMetaPixelTracker } from '@/lib/useMetaPixelTracker'
 
 interface PlanData {
   name: string
@@ -91,8 +92,12 @@ export default function VendasPage() {
   const router = useRouter()
   const [timeLeft, setTimeLeft] = useState('23:59:59')
   const [currentNotification, setCurrentNotification] = useState<PurchaseNotification | null>(null)
+  const { onAddToCart, onInitiateCheckout, onViewContent } = useMetaPixelTracker()
 
   useEffect(() => {
+    // Rastrear visualização da página
+    onViewContent('Página de Vendas - Pacotes')
+
     const timer = setInterval(() => {
       const now = new Date().getTime()
       const end = new Date()
@@ -112,7 +117,7 @@ export default function VendasPage() {
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [])
+  }, [onViewContent])
 
   useEffect(() => {
     const delay = setTimeout(() => {
@@ -132,6 +137,12 @@ export default function VendasPage() {
 
     return () => clearTimeout(delay)
   }, [])
+
+  const checkoutLinks: Record<string, string> = {
+    'Pacote Normal': 'https://lastlink.com/p/C7520AC5D/checkout-payment/',
+    'Pacote Básico': 'https://lastlink.com/p/C7CF3D279/checkout-payment/',
+    'Pacote VIP': 'https://lastlink.com/p/CF34F42DC/checkout-payment/'
+  }
 
   const plans: PlanData[] = [
     {
@@ -420,7 +431,20 @@ export default function VendasPage() {
 
                     {/* CTA Button - High Conversion */}
                     <button
-                      onClick={() => handleCheckout(plan.name)}
+                      onClick={() => {
+                        const packageId = plan.name === 'Pacote Normal' ? 'pkg_normal_1990' : plan.name === 'Pacote Básico' ? 'pkg_basico_2790' : 'pkg_vip_3790'
+                        const price = plan.name === 'Pacote Normal' ? 19.90 : plan.name === 'Pacote Básico' ? 27.90 : 37.90
+                        
+                        // Rastrear eventos Meta Pixel
+                        onAddToCart(packageId, plan.name, price)
+                        onInitiateCheckout(packageId, plan.name, price)
+                        handleCheckout(plan.name)
+                        
+                        // Redirecionar para checkout payment após rastreamento
+                        setTimeout(() => {
+                          window.location.href = checkoutLinks[plan.name]
+                        }, 100)
+                      }}
                       className={`w-full py-3 sm:py-4 rounded-lg font-bold mb-6 sm:mb-8 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base ${plan.ctaColor}`}
                     >
                       {plan.cta}
@@ -715,7 +739,11 @@ export default function VendasPage() {
               ⏰ Oferta válida por: <span className="text-white">{timeLeft}</span>
             </p>
             <button
-              onClick={() => handleCheckout('Pacote VIP')}
+              onClick={() => {
+                onAddToCart('pkg_vip_3790', 'Pacote VIP', 37.90)
+                onInitiateCheckout('pkg_vip_3790', 'Pacote VIP', 37.90)
+                handleCheckout('Pacote VIP')
+              }}
               className="bg-gradient-to-r from-[#ffd700] to-[#ffed4e] text-[#1a1a2e] font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg hover:shadow-lg hover:shadow-[#ffd700]/30 transition-all transform hover:scale-105 active:scale-95 text-sm sm:text-base md:text-lg w-full sm:w-auto"
             >
               Garantir Acesso VIP Agora
