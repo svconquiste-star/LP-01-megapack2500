@@ -1,0 +1,10 @@
+{
+  "build": {
+    "context": ".",
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "buildTimeout": 3600,
+    "deploymentTimeout": 600
+  }
+}
