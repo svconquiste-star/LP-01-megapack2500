@@ -1,9 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Check, Lock, Zap, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle } from 'lucide-react'
+import { ArrowLeft, Check, Zap, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
-import Script from 'next/script'
 import { useMetaPixelTracker } from '@/lib/useMetaPixelTracker'
 
 interface PlanData {
@@ -101,11 +100,8 @@ export default function VendasPage() {
     const timer = setInterval(() => {
       const now = new Date().getTime()
       const end = new Date()
+      end.setDate(end.getDate() + 7)
       end.setHours(23, 59, 59)
-      
-      if (new Date() > end) {
-        end.setDate(end.getDate() + 1)
-      }
       
       const endTime = end.getTime()
       const diff = Math.floor((endTime - now) / 1000)
@@ -129,13 +125,19 @@ export default function VendasPage() {
           setCurrentNotification(null)
         }, 4000)
 
-        return () => clearTimeout(dismissTimer)
+        return () => {
+          clearTimeout(dismissTimer)
+        }
       }, 12000)
 
-      return () => clearInterval(notificationTimer)
+      return () => {
+        clearInterval(notificationTimer)
+      }
     }, 3000)
 
-    return () => clearTimeout(delay)
+    return () => {
+      clearTimeout(delay)
+    }
   }, [])
 
   const checkoutLinks: Record<string, string> = {
@@ -148,15 +150,16 @@ export default function VendasPage() {
     {
       name: 'Pacote Normal',
       price: '19,90',
-      pricePerMonth: '∞ (Vitalício)',
+      pricePerMonth: '1 pagamento único',
       value: 'Perfeito para começar',
       savings: null,
+      originalPrice: '49,90',
       features: [
         'TEMPLATES N8N (Vitalício)',
         'Acesso permanente',
         'Sem renovação'
       ],
-      icon: Lock,
+      icon: Sparkles,
       color: '#ff6b6b',
       cta: 'Começar Agora',
       ctaColor: 'bg-[#2a2a3e] text-white hover:bg-[#3a3a4e]',
@@ -166,9 +169,10 @@ export default function VendasPage() {
     {
       name: 'Pacote Básico',
       price: '27,90',
-      pricePerMonth: 'R$ 2,33/mês',
+      pricePerMonth: '1 pagamento único',
       value: 'Melhor custo-benefício',
-      savings: 'ECONOMIZE 40%',
+      savings: 'ECONOMIZE 44%',
+      originalPrice: '49,90',
       features: [
         'TEMPLATES N8N (Vitalício)',
         'Prompts Midjourney',
@@ -185,9 +189,10 @@ export default function VendasPage() {
     {
       name: 'Pacote VIP',
       price: '37,90',
-      pricePerMonth: 'R$ 3,16/mês',
+      pricePerMonth: '1 pagamento único',
       value: 'Acesso completo + Bônus',
-      savings: 'ECONOMIZE 50%',
+      savings: 'ECONOMIZE 24%',
+      originalPrice: '49,90',
       features: [
         'TEMPLATES N8N (Vitalício)',
         'Pack Prompts Para ChatGPT',
@@ -219,58 +224,34 @@ export default function VendasPage() {
     }
   }
 
+  const handleAddPaymentInfo = (planName: string) => {
+    const value = planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('track', 'AddPaymentInfo', {
+        content_name: planName,
+        content_type: 'product',
+        value: value,
+        currency: 'BRL',
+        content_id: planName.toLowerCase().replace(/\s+/g, '-')
+      })
+    }
+  }
+
   const handleCheckout = (planName: string) => {
+    const value = planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90
     if (typeof window !== 'undefined' && (window as any).fbq) {
       (window as any).fbq('track', 'InitiateCheckout', {
         content_name: planName,
         content_type: 'product',
-        value: planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90,
-        currency: 'BRL'
+        value: value,
+        currency: 'BRL',
+        content_id: planName.toLowerCase().replace(/\s+/g, '-')
       })
     }
-    
-    setTimeout(() => {
-      if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'Purchase', {
-          content_name: planName,
-          content_type: 'product',
-          value: planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90,
-          currency: 'BRL'
-        })
-      }
-    }, 500)
   }
 
   return (
     <>
-      <Script
-        id="facebook-pixel"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1223994006324453');
-            fbq('track', 'PageView');
-          `,
-        }}
-      />
-      <noscript>
-        <img
-          height="1"
-          width="1"
-          style={{ display: 'none' }}
-          src="https://www.facebook.com/tr?id=1223994006324453&ev=PageView&noscript=1"
-          alt=""
-        />
-      </noscript>
-
       <div className="min-h-screen bg-gradient-to-b from-[#0f0f0f] via-[#1a1a2e] to-[#0f0f0f]">
         {/* Header */}
         <div className="bg-gradient-to-b from-[#1a1a2e] to-[#0f0f0f] border-b border-[#2a2a3e] sticky top-0 z-50">
@@ -403,6 +384,14 @@ export default function VendasPage() {
                       </div>
                     )}
 
+                    {/* Guarantee Badge */}
+                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
+                      <div className="flex items-center gap-1 px-2 sm:px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded-full">
+                        <Shield size={14} />
+                        <span>Garantia 7 Dias</span>
+                      </div>
+                    </div>
+
                     {/* Icon */}
                     <div className="mb-4 sm:mb-6 text-center">
                       <div
@@ -423,6 +412,9 @@ export default function VendasPage() {
                     {/* Price - Emotional Appeal */}
                     <div className="mb-4 sm:mb-6 text-center">
                       <div className="flex items-baseline gap-2 justify-center">
+                        {plan.originalPrice && (
+                          <span className="text-gray-500 text-lg sm:text-2xl line-through">R$ {plan.originalPrice}</span>
+                        )}
                         <span className="text-white text-4xl sm:text-5xl font-black">R$ {plan.price}</span>
                       </div>
                       <p className="text-gray-400 text-xs mt-2">{plan.pricePerMonth}</p>
@@ -437,6 +429,7 @@ export default function VendasPage() {
                         
                         // Rastrear eventos Meta Pixel
                         onAddToCart(packageId, plan.name, price)
+                        handleAddPaymentInfo(plan.name)
                         onInitiateCheckout(packageId, plan.name, price)
                         handleCheckout(plan.name)
                         
@@ -554,9 +547,10 @@ export default function VendasPage() {
                     <Star key={i} size={14} className="text-[#ffd700]" fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Transformou completamente meu negócio! Os templates são incríveis e o suporte é excelente. Recuperei meu investimento em 2 semanas!&quot;</p>
+                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Transformou completamente meu negócio! Os templates N8N economizaram 40h/mês de desenvolvimento. Recuperei meu investimento em 2 semanas!&quot;</p>
                 <p className="text-gray-400 text-xs font-bold">João Silva</p>
-                <p className="text-gray-500 text-xs mt-1">Economizou 40h/mês</p>
+                <p className="text-gray-500 text-xs">CEO, Agência Digital Silva</p>
+                <p className="text-gray-500 text-xs mt-1">São Paulo, SP</p>
               </div>
 
               <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-4 sm:p-6 hover:border-[#ff6b6b] transition-all">
@@ -565,9 +559,10 @@ export default function VendasPage() {
                     <Star key={i} size={14} className="text-[#ffd700]" fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Melhor investimento que fiz! Economizei horas de trabalho com os templates prontos. Minha produtividade triplicou!&quot;</p>
+                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Os prompts de IA e templates Typebot aumentaram minhas conversões em 156%. Melhor investimento que fiz em automação!&quot;</p>
                 <p className="text-gray-400 text-xs font-bold">Maria Santos</p>
-                <p className="text-gray-500 text-xs mt-1">Produtividade +300%</p>
+                <p className="text-gray-500 text-xs">Especialista em Marketing Digital</p>
+                <p className="text-gray-500 text-xs mt-1">Rio de Janeiro, RJ</p>
               </div>
 
               <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-4 sm:p-6 hover:border-[#ffd700] transition-all">
@@ -576,9 +571,10 @@ export default function VendasPage() {
                     <Star key={i} size={14} className="text-[#ffd700]" fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Acesso vitalício é perfeito! Não preciso me preocupar com renovações. Recomendo para todos os meus colegas!&quot;</p>
+                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Acesso vitalício é perfeito para agências! Todos os meus clientes usam os templates. ROI garantido!&quot;</p>
                 <p className="text-gray-400 text-xs font-bold">Pedro Costa</p>
-                <p className="text-gray-500 text-xs mt-1">Recomendou para 15+ pessoas</p>
+                <p className="text-gray-500 text-xs">Diretor de Operações, TechFlow</p>
+                <p className="text-gray-500 text-xs mt-1">Belo Horizonte, MG</p>
               </div>
             </div>
           </div>
@@ -662,6 +658,26 @@ export default function VendasPage() {
             </div>
           </div>
 
+          {/* Video Demo Section */}
+          <div className="mb-16 sm:mb-24">
+            <h3 className="text-white text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Veja Como Funciona</h3>
+            <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-2xl p-4 sm:p-6 md:p-8 overflow-hidden">
+              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg"
+                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                  title="Demonstração Mega Pack 2500X"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <p className="text-gray-400 text-xs sm:text-sm mt-4 text-center">
+                Assista a uma demonstração completa de como usar os templates e aumentar sua produtividade
+              </p>
+            </div>
+          </div>
+
           {/* FAQ Section */}
           <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-2xl p-4 sm:p-6 md:p-8 mb-16 sm:mb-24">
             <h3 className="text-white text-2xl sm:text-3xl font-bold mb-6 sm:mb-12 text-center">Perguntas Frequentes</h3>
@@ -741,8 +757,13 @@ export default function VendasPage() {
             <button
               onClick={() => {
                 onAddToCart('pkg_vip_3790', 'Pacote VIP', 37.90)
+                handleAddPaymentInfo('Pacote VIP')
                 onInitiateCheckout('pkg_vip_3790', 'Pacote VIP', 37.90)
                 handleCheckout('Pacote VIP')
+                
+                setTimeout(() => {
+                  window.location.href = checkoutLinks['Pacote VIP']
+                }, 100)
               }}
               className="bg-gradient-to-r from-[#ffd700] to-[#ffed4e] text-[#1a1a2e] font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg hover:shadow-lg hover:shadow-[#ffd700]/30 transition-all transform hover:scale-105 active:scale-95 text-sm sm:text-base md:text-lg w-full sm:w-auto"
             >

@@ -5,13 +5,11 @@ import { X } from 'lucide-react'
 
 export default function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false)
-  const [hasConsent, setHasConsent] = useState<boolean | null>(null)
 
   useEffect(() => {
     // Verificar se já existe consentimento armazenado
     const storedConsent = localStorage.getItem('cookie_consent')
     if (storedConsent) {
-      setHasConsent(JSON.parse(storedConsent))
       setIsVisible(false)
     } else {
       setIsVisible(true)
@@ -21,7 +19,6 @@ export default function CookieConsent() {
   const handleAccept = () => {
     localStorage.setItem('cookie_consent', JSON.stringify(true))
     localStorage.setItem('cookie_consent_date', new Date().toISOString())
-    setHasConsent(true)
     setIsVisible(false)
     
     // Notificar Meta Pixel que consentimento foi dado
@@ -38,7 +35,6 @@ export default function CookieConsent() {
   const handleReject = () => {
     localStorage.setItem('cookie_consent', JSON.stringify(false))
     localStorage.setItem('cookie_consent_date', new Date().toISOString())
-    setHasConsent(false)
     setIsVisible(false)
     
     // Notificar Meta Pixel que consentimento foi rejeitado
