@@ -556,6 +556,9 @@ video {
 .top-4 {
   top: 1rem;
 }
+.top-12 {
+  top: 3rem;
+}
 .z-40 {
   z-index: 40;
 }
@@ -707,6 +710,9 @@ video {
 }
 .items-start {
   align-items: flex-start;
+}
+.items-end {
+  align-items: flex-end;
 }
 .items-center {
   align-items: center;
@@ -1339,6 +1345,10 @@ select {
 
   .sm\:top-4 {
     top: 1rem;
+  }
+
+  .sm\:top-14 {
+    top: 3.5rem;
   }
 
   .sm\:mb-0 {

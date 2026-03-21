@@ -100,14 +100,14 @@ export default function VendasPage() {
     const timer = setInterval(() => {
       const now = new Date().getTime()
       const end = new Date()
-      end.setDate(end.getDate() + 7)
+      end.setDate(end.getDate() + 1)
       end.setHours(23, 59, 59)
       
       const endTime = end.getTime()
       const diff = Math.floor((endTime - now) / 1000)
-      const hours = Math.floor(diff / 3600)
-      const minutes = Math.floor((diff % 3600) / 60)
-      const seconds = diff % 60
+      const hours = Math.max(0, Math.floor(diff / 3600))
+      const minutes = Math.max(0, Math.floor((diff % 3600) / 60))
+      const seconds = Math.max(0, diff % 60)
       
       setTimeLeft(`${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`)
     }, 1000)
@@ -128,7 +128,7 @@ export default function VendasPage() {
         return () => {
           clearTimeout(dismissTimer)
         }
-      }, 12000)
+      }, 45000)
 
       return () => {
         clearInterval(notificationTimer)
@@ -385,7 +385,7 @@ export default function VendasPage() {
                     )}
 
                     {/* Guarantee Badge */}
-                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
+                    <div className="absolute top-12 sm:top-14 left-3 sm:left-4">
                       <div className="flex items-center gap-1 px-2 sm:px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-bold rounded-full">
                         <Shield size={14} />
                         <span>Garantia 7 Dias</span>
@@ -655,26 +655,6 @@ export default function VendasPage() {
                   <p className="text-gray-400 text-xs sm:text-sm">Clientes recuperam seu investimento em média em 2-3 semanas de uso.</p>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Video Demo Section */}
-          <div className="mb-16 sm:mb-24">
-            <h3 className="text-white text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Veja Como Funciona</h3>
-            <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-2xl p-4 sm:p-6 md:p-8 overflow-hidden">
-              <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full rounded-lg"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                  title="Demonstração Mega Pack 2500X"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-              <p className="text-gray-400 text-xs sm:text-sm mt-4 text-center">
-                Assista a uma demonstração completa de como usar os templates e aumentar sua produtividade
-              </p>
             </div>
           </div>
 
