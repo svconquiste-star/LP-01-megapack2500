@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, Check, Zap, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
@@ -656,6 +657,38 @@ export default function VendasPage() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Social Proof - Image Gallery */}
+          <div className="mb-16 sm:mb-24">
+            <h3 className="text-white text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Veja os Resultados em Ação</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {[
+                { src: '/img/01.png', alt: 'Resultado 1 - Templates N8N em ação' },
+                { src: '/img/02.png', alt: 'Resultado 2 - Automação de fluxos' },
+                { src: '/img/03.png', alt: 'Resultado 3 - Dashboard de análise' },
+                { src: '/img/04.png', alt: 'Resultado 4 - Integração de sistemas' },
+                { src: '/img/05.png', alt: 'Resultado 5 - Otimização de processos' }
+              ].map((image, index) => (
+                <div key={index} className="relative group overflow-hidden rounded-xl border border-[#2a2a3e] hover:border-[#5a5af6] transition-all">
+                  <div className="relative w-full h-48 sm:h-56 md:h-64">
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <p className="text-white text-sm font-semibold">{image.alt}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-gray-400 text-xs sm:text-sm mt-6 text-center">
+              ✨ Estes são exemplos reais de como nossos templates transformam negócios
+            </p>
           </div>
 
           {/* FAQ Section */}
