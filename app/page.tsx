@@ -153,8 +153,8 @@ export default function VendasPage() {
       price: '19,90',
       pricePerMonth: '1 pagamento único',
       value: 'Perfeito para começar',
-      savings: null,
-      originalPrice: '49,90',
+      savings: 'ECONOMIZE 43%',
+      originalPrice: '35,00',
       features: [
         'TEMPLATES N8N (Vitalício)',
         'Acesso permanente',
@@ -172,8 +172,8 @@ export default function VendasPage() {
       price: '27,90',
       pricePerMonth: '1 pagamento único',
       value: 'Melhor custo-benefício',
-      savings: 'ECONOMIZE 44%',
-      originalPrice: '49,90',
+      savings: 'ECONOMIZE 53%',
+      originalPrice: '59,90',
       features: [
         'TEMPLATES N8N (Vitalício)',
         'Prompts Midjourney',
@@ -192,8 +192,8 @@ export default function VendasPage() {
       price: '37,90',
       pricePerMonth: '1 pagamento único',
       value: 'Acesso completo + Bônus',
-      savings: 'ECONOMIZE 24%',
-      originalPrice: '49,90',
+      savings: 'ECONOMIZE 63%',
+      originalPrice: '102,90',
       features: [
         'TEMPLATES N8N (Vitalício)',
         'Pack Prompts Para ChatGPT',
@@ -671,13 +671,12 @@ export default function VendasPage() {
                 { src: '/img/05.png', alt: 'Resultado 5 - Otimização de processos' }
               ].map((image, index) => (
                 <div key={index} className="relative group overflow-hidden rounded-xl border border-[#2a2a3e] hover:border-[#5a5af6] transition-all">
-                  <div className="relative w-full h-48 sm:h-56 md:h-64">
-                    <Image
+                  <div className="relative w-full aspect-video bg-[#1a1a2e]">
+                    <img
                       src={image.src}
                       alt={image.alt}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
