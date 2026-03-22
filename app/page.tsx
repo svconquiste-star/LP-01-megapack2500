@@ -151,7 +151,7 @@ export default function VendasPage() {
     {
       name: 'Pacote Normal',
       price: '19,90',
-      pricePerMonth: '1 pagamento único',
+      pricePerMonth: '',
       value: 'Perfeito para começar',
       savings: 'ECONOMIZE 43%',
       originalPrice: '35,00',
@@ -170,7 +170,7 @@ export default function VendasPage() {
     {
       name: 'Pacote Básico',
       price: '27,90',
-      pricePerMonth: '1 pagamento único',
+      pricePerMonth: '',
       value: 'Melhor custo-benefício',
       savings: 'ECONOMIZE 53%',
       originalPrice: '59,90',
@@ -190,7 +190,7 @@ export default function VendasPage() {
     {
       name: 'Pacote VIP',
       price: '37,90',
-      pricePerMonth: '1 pagamento único',
+      pricePerMonth: '',
       value: 'Acesso completo + Bônus',
       savings: 'ECONOMIZE 63%',
       originalPrice: '102,90',
