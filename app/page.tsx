@@ -663,20 +663,23 @@ export default function VendasPage() {
             <h3 className="text-white text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Veja os Resultados em Ação</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {[
-                { src: '/img/01.png', alt: 'Resultado 1 - Templates N8N em ação' },
-                { src: '/img/02.png', alt: 'Resultado 2 - Automação de fluxos' },
-                { src: '/img/03.png', alt: 'Resultado 3 - Dashboard de análise' },
-                { src: '/img/04.png', alt: 'Resultado 4 - Integração de sistemas' },
-                { src: '/img/05.png', alt: 'Resultado 5 - Otimização de processos' }
+                { webp: '/img/01.webp', png: '/img/01.png', alt: 'Resultado 1 - Templates N8N em ação' },
+                { webp: '/img/02.webp', png: '/img/02.png', alt: 'Resultado 2 - Automação de fluxos' },
+                { webp: '/img/03.webp', png: '/img/03.png', alt: 'Resultado 3 - Dashboard de análise' },
+                { webp: '/img/04.webp', png: '/img/04.png', alt: 'Resultado 4 - Integração de sistemas' },
+                { webp: '/img/05.webp', png: '/img/05.png', alt: 'Resultado 5 - Otimização de processos' }
               ].map((image, index) => (
                 <div key={index} className="relative group overflow-hidden rounded-xl border border-[#2a2a3e] hover:border-[#5a5af6] transition-all">
                   <div className="relative w-full aspect-video bg-[#1a1a2e]">
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
+                    <picture>
+                      <source srcSet={image.webp} type="image/webp" />
+                      <img
+                        src={image.png}
+                        alt={image.alt}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </picture>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                     <p className="text-white text-sm font-semibold">{image.alt}</p>
