@@ -3,15 +3,11 @@
 import { useEffect } from 'react'
 import { hasCookieConsent, prepareUserDataForMeta } from '@/lib/cookieUtils'
 
+const PIXEL_ID = '1223994006324453'
+
 export default function MetaPixel() {
   useEffect(() => {
-    // 1. Carregar script do Meta Pixel
-    const script = document.createElement('script')
-    script.async = true
-    script.src = 'https://connect.facebook.net/en_US/fbevents.js'
-    document.head.appendChild(script)
-
-    // 2. Inicializar fbq
+    // 1. Inicializar fbq antes de carregar o script
     window.fbq = window.fbq || function() {
       window.fbq.callMethod ? window.fbq.callMethod.apply(window.fbq, arguments) : window.fbq.queue.push(arguments)
     }
@@ -20,41 +16,67 @@ export default function MetaPixel() {
     }
     window.fbq.queue = window.fbq.queue || []
     window.fbq.loaded = true
+    window.fbq.version = '2.0'
 
-    // 3. Configurar consentimento de cookies
-    const hasConsent = hasCookieConsent()
-    if (hasConsent) {
-      window.fbq('consent', 'grant', {
-        'analytics_storage': 'granted',
-        'ad_storage': 'granted',
-        'ad_user_data': 'granted',
-        'ad_personalization': 'granted'
-      })
-    } else {
-      window.fbq('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
-      })
+    // 2. Carregar script do Meta Pixel
+    const script = document.createElement('script')
+    script.async = true
+    script.src = 'https://connect.facebook.net/en_US/fbevents.js'
+    script.onload = () => {
+      initializePixel()
     }
+    document.head.appendChild(script)
 
-    // 4. Inicializar Pixel
-    window.fbq('init', '1223994006324453')
-
-    // 5. Rastrear PageView
-    window.fbq('track', 'PageView')
-
-    // 6. Obter geolocalização e rastrear
-    getClientLocationAndTrack()
-
-    // 7. Se houver consentimento, enviar dados do usuário
-    if (hasConsent) {
-      sendUserDataToMeta()
-    }
+    // Fallback se o script não carregar em tempo
+    setTimeout(() => {
+      if (window.fbq && !window.fbq.initialized) {
+        initializePixel()
+      }
+    }, 2000)
   }, [])
 
   return null
+}
+
+function initializePixel() {
+  if (window.fbq.initialized) return
+
+  // 1. Configurar consentimento de cookies
+  const hasConsent = hasCookieConsent()
+  if (hasConsent) {
+    window.fbq('consent', 'grant', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    })
+  } else {
+    window.fbq('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    })
+  }
+
+  // 2. Inicializar Pixel com ID
+  window.fbq('init', PIXEL_ID)
+  window.fbq.initialized = true
+
+  // 3. Rastrear PageView
+  window.fbq('track', 'PageView', {
+    event_id: generateEventId('pageview')
+  })
+
+  // 4. Obter geolocalização e rastrear
+  getClientLocationAndTrack()
+
+  // 5. Se houver consentimento, enviar dados do usuário
+  if (hasConsent) {
+    sendUserDataToMeta()
+  }
+
+  console.log('✅ Meta Pixel inicializado com sucesso (ID: ' + PIXEL_ID + ')')
 }
 
 async function getClientLocationAndTrack() {
@@ -97,7 +119,7 @@ async function sendUserDataToMeta() {
       const hashedData = await prepareUserDataForMeta(parsedData)
       
       if (Object.keys(hashedData).length > 0) {
-        window.fbq('init', '1223994006324453', hashedData)
+        window.fbq('setUserData', hashedData)
         console.log('✅ Dados do usuário enviados para Meta Pixel')
       }
     }
