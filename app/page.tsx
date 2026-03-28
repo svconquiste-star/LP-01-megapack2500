@@ -208,43 +208,45 @@ export default function VendasPage() {
     }
   ]
 
-  const trackPixelEvent = (eventName: string, planName: string): void => {
+  const planPrices: Record<string, number> = {
+    'Pacote VIP': 37.90,
+    'Pacote Básico': 27.90,
+    'Pacote Normal': 19.90
+  }
+
+  const generatePixelId = (): string => {
+    const ts: number = Date.now()
+    const rnd: number = Math.floor(Math.random() * 1000000000)
+    return ts + '_' + rnd
+  }
+
+  const sendPixelEvent = (eventName: string, planName: string): void => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
-      const priceMap: Record<string, number> = {
-        'Pacote VIP': 37.90,
-        'Pacote Básico': 27.90,
-        'Pacote Normal': 19.90
-      }
-      
-      const value = priceMap[planName] || 19.90
-      const contentId = planName.toLowerCase().replace(/\s+/g, '-')
-      const eventId = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-      
       (window as any).fbq('track', eventName, {
         content_name: planName,
         content_type: 'product',
-        content_id: contentId,
-        value: value,
+        content_id: planName.toLowerCase().replace(/\s+/g, '-'),
+        value: planPrices[planName] || 19.90,
         currency: 'BRL',
-        event_id: eventId
+        event_id: generatePixelId()
       })
     }
   }
 
   const handlePlanClick = (planName: string): void => {
-    trackPixelEvent('ViewContent', planName)
+    sendPixelEvent('ViewContent', planName)
   }
 
   const handleAddToCart = (planName: string): void => {
-    trackPixelEvent('AddToCart', planName)
+    sendPixelEvent('AddToCart', planName)
   }
 
   const handleInitiateCheckout = (planName: string): void => {
-    trackPixelEvent('InitiateCheckout', planName)
+    sendPixelEvent('InitiateCheckout', planName)
   }
 
   const handleAddPaymentInfo = (planName: string): void => {
-    trackPixelEvent('AddPaymentInfo', planName)
+    sendPixelEvent('AddPaymentInfo', planName)
   }
 
   const handleCheckout = (planName: string): void => {

@@ -1,0 +1,1 @@
+"use strict";exports.id=644,exports.ids=[644],exports.modules={8644:(e,r,t)=>{function s(){return!1}async function o(e){return{}}t.d(r,{hasCookieConsent:()=>s,prepareUserDataForMeta:()=>o})}};
