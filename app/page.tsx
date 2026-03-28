@@ -91,7 +91,7 @@ export default function VendasPage() {
   const router = useRouter()
   const [timeLeft, setTimeLeft] = useState('23:59:59')
   const [currentNotification, setCurrentNotification] = useState<PurchaseNotification | null>(null)
-  const { onAddToCart, onInitiateCheckout, onViewContent } = useMetaPixelTracker()
+  const { onViewContent } = useMetaPixelTracker()
 
   useEffect(() => {
     // Rastrear visualização da página
