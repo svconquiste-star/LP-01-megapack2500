@@ -813,14 +813,10 @@ export default function VendasPage() {
             </p>
             <button
               onClick={() => {
-                onAddToCart('pkg_vip_3790', 'Pacote VIP', 37.90)
+                // Disparar eventos Meta Pixel conforme padrões
+                handleAddToCart('Pacote VIP')
                 handleAddPaymentInfo('Pacote VIP')
-                onInitiateCheckout('pkg_vip_3790', 'Pacote VIP', 37.90)
                 handleCheckout('Pacote VIP')
-                
-                setTimeout(() => {
-                  window.location.href = checkoutLinks['Pacote VIP']
-                }, 100)
               }}
               className="bg-gradient-to-r from-[#ffd700] to-[#ffed4e] text-[#1a1a2e] font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg hover:shadow-lg hover:shadow-[#ffd700]/30 transition-all transform hover:scale-105 active:scale-95 text-sm sm:text-base md:text-lg w-full sm:w-auto"
             >
