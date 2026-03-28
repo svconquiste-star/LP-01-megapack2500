@@ -208,93 +208,50 @@ export default function VendasPage() {
     }
   ]
 
-  const getProductValue = (planName: string): number => {
-    return planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90
-  }
-
-  const getProductId = (planName: string): string => {
-    return planName.toLowerCase().replace(/\s+/g, '-')
-  }
-
-  const generateEventId = (): string => {
-    return `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  const trackPixelEvent = (eventName: string, planName: string): void => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      const priceMap: Record<string, number> = {
+        'Pacote VIP': 37.90,
+        'Pacote Básico': 27.90,
+        'Pacote Normal': 19.90
+      }
+      
+      const value = priceMap[planName] || 19.90
+      const contentId = planName.toLowerCase().replace(/\s+/g, '-')
+      const eventId = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+      
+      (window as any).fbq('track', eventName, {
+        content_name: planName,
+        content_type: 'product',
+        content_id: contentId,
+        value: value,
+        currency: 'BRL',
+        event_id: eventId
+      })
+    }
   }
 
   const handlePlanClick = (planName: string): void => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      const value: number = getProductValue(planName)
-      const prodId: string = getProductId(planName)
-      
-      // ViewContent - Visualização do plano
-      (window as any).fbq('track', 'ViewContent', {
-        content_name: planName,
-        content_type: 'product',
-        content_id: prodId,
-        value: value,
-        currency: 'BRL',
-        event_id: generateEventId()
-      })
-    }
+    trackPixelEvent('ViewContent', planName)
   }
 
   const handleAddToCart = (planName: string): void => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      const value: number = getProductValue(planName)
-      const prodId: string = getProductId(planName)
-      
-      // AddToCart - Adicionar ao carrinho
-      (window as any).fbq('track', 'AddToCart', {
-        content_name: planName,
-        content_type: 'product',
-        content_id: prodId,
-        value: value,
-        currency: 'BRL',
-        event_id: generateEventId()
-      })
-    }
+    trackPixelEvent('AddToCart', planName)
   }
 
   const handleInitiateCheckout = (planName: string): void => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      const value: number = getProductValue(planName)
-      const prodId: string = getProductId(planName)
-      
-      // InitiateCheckout - Iniciar checkout
-      (window as any).fbq('track', 'InitiateCheckout', {
-        content_name: planName,
-        content_type: 'product',
-        content_id: prodId,
-        value: value,
-        currency: 'BRL',
-        event_id: generateEventId()
-      })
-    }
+    trackPixelEvent('InitiateCheckout', planName)
   }
 
   const handleAddPaymentInfo = (planName: string): void => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      const value: number = getProductValue(planName)
-      const prodId: string = getProductId(planName)
-      
-      // AddPaymentInfo - Adicionar informações de pagamento
-      (window as any).fbq('track', 'AddPaymentInfo', {
-        content_name: planName,
-        content_type: 'product',
-        content_id: prodId,
-        value: value,
-        currency: 'BRL',
-        event_id: generateEventId()
-      })
-    }
+    trackPixelEvent('AddPaymentInfo', planName)
   }
 
   const handleCheckout = (planName: string): void => {
-    // Disparar AddToCart e InitiateCheckout antes de redirecionar
     handleAddToCart(planName)
     handleInitiateCheckout(planName)
     
-    // Redirecionar para checkout
-    const checkoutUrl: string | undefined = checkoutLinks[planName]
+    const checkoutUrl = checkoutLinks[planName]
     if (checkoutUrl) {
       setTimeout(() => {
         window.location.href = checkoutUrl
