@@ -141,8 +141,8 @@ export default function VendasPage() {
   }, [])
 
   const checkoutLinks: Record<string, string> = {
-    'Pacote Normal': 'https://lastlink.com/p/C7520AC5D/checkout-payment/',
-    'Pacote Básico': 'https://lastlink.com/p/C7CF3D279/checkout-payment/',
+    'Pacote Normal': 'https://lastlink.com/p/C5DA81BED/checkout-payment/',
+    'Pacote Básico': 'https://lastlink.com/p/C60A08A9C/checkout-payment/',
     'Pacote VIP': 'https://lastlink.com/p/CF34F42DC/checkout-payment/'
   }
 
@@ -151,13 +151,13 @@ export default function VendasPage() {
       name: 'Pacote Normal',
       price: '19,90',
       pricePerMonth: '',
-      value: 'Perfeito para começar',
+      value: 'Comece a automatizar hoje',
       savings: 'ECONOMIZE 43%',
       originalPrice: '35,00',
       features: [
-        'TEMPLATES N8N (Vitalício)',
-        'Acesso permanente',
-        'Sem renovação'
+        '2500+ Templates N8N (Vitalício)',
+        'Automação básica em minutos',
+        'Sem renovação - pague uma vez'
       ],
       icon: Sparkles,
       color: '#ff6b6b',
@@ -170,14 +170,14 @@ export default function VendasPage() {
       name: 'Pacote Básico',
       price: '27,90',
       pricePerMonth: '',
-      value: 'Melhor custo-benefício',
+      value: 'Melhor custo-benefício para crescimento',
       savings: 'ECONOMIZE 53%',
       originalPrice: '59,90',
       features: [
-        'TEMPLATES N8N (Vitalício)',
-        'Prompts Midjourney',
-        'Templates Typebot',
-        'SaaS Softwares'
+        '2500+ Templates N8N + Prompts IA',
+        'Automação + Geração de Conteúdo',
+        'Chatbots e Fluxos Avançados',
+        'Ferramentas SaaS Integradas'
       ],
       icon: Zap,
       color: '#5a5af6',
@@ -190,19 +190,14 @@ export default function VendasPage() {
       name: 'Pacote VIP',
       price: '37,90',
       pricePerMonth: '',
-      value: 'Acesso completo + Bônus',
+      value: 'Solução completa para dominar automação',
       savings: 'ECONOMIZE 63%',
       originalPrice: '102,90',
       features: [
-        'TEMPLATES N8N (Vitalício)',
-        'Pack Prompts Para ChatGPT',
-        'Super Fluxos',
-        'Templates Typebot',
+        'Tudo do Pacote Básico +',
+        'Super Fluxos Avançados',
         'Self-Hosted Softwares',
-        'SaaS Softwares',
-        'Prompts Midjourney',
-        'Ferramentas Gratuitas',
-        'Bônus Exclusivos'
+        'Bônus Exclusivos + Suporte'
       ],
       icon: Crown,
       color: '#ffd700',
@@ -213,40 +208,97 @@ export default function VendasPage() {
     }
   ]
 
+  const getProductValue = (planName: string): number => {
+    return planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90
+  }
+
+  const getProductId = (planName: string): string => {
+    return planName.toLowerCase().replace(/\s+/g, '-')
+  }
+
+  const generateEventId = (): string => {
+    return `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  }
+
   const handlePlanClick = (planName: string) => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
+      const value = getProductValue(planName)
+      const contentId = getProductId(planName)
+      
+      // ViewContent - Visualização do plano
       (window as any).fbq('track', 'ViewContent', {
         content_name: planName,
         content_type: 'product',
-        value: planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90,
-        currency: 'BRL'
+        content_id: contentId,
+        value: value,
+        currency: 'BRL',
+        event_id: generateEventId()
+      })
+    }
+  }
+
+  const handleAddToCart = (planName: string) => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      const value = getProductValue(planName)
+      const contentId = getProductId(planName)
+      
+      // AddToCart - Adicionar ao carrinho
+      (window as any).fbq('track', 'AddToCart', {
+        content_name: planName,
+        content_type: 'product',
+        content_id: contentId,
+        value: value,
+        currency: 'BRL',
+        event_id: generateEventId()
+      })
+    }
+  }
+
+  const handleInitiateCheckout = (planName: string) => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      const value = getProductValue(planName)
+      const contentId = getProductId(planName)
+      
+      // InitiateCheckout - Iniciar checkout
+      (window as any).fbq('track', 'InitiateCheckout', {
+        content_name: planName,
+        content_type: 'product',
+        content_id: contentId,
+        value: value,
+        currency: 'BRL',
+        event_id: generateEventId()
       })
     }
   }
 
   const handleAddPaymentInfo = (planName: string) => {
-    const value = planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90
     if (typeof window !== 'undefined' && (window as any).fbq) {
+      const value = getProductValue(planName)
+      const contentId = getProductId(planName)
+      
+      // AddPaymentInfo - Adicionar informações de pagamento
       (window as any).fbq('track', 'AddPaymentInfo', {
         content_name: planName,
         content_type: 'product',
+        content_id: contentId,
         value: value,
         currency: 'BRL',
-        content_id: planName.toLowerCase().replace(/\s+/g, '-')
+        event_id: generateEventId()
       })
     }
   }
 
   const handleCheckout = (planName: string) => {
-    const value = planName === 'Pacote VIP' ? 37.90 : planName === 'Pacote Básico' ? 27.90 : 19.90
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-      (window as any).fbq('track', 'InitiateCheckout', {
-        content_name: planName,
-        content_type: 'product',
-        value: value,
-        currency: 'BRL',
-        content_id: planName.toLowerCase().replace(/\s+/g, '-')
-      })
+    // Disparar AddToCart e InitiateCheckout antes de redirecionar
+    handleAddToCart(planName)
+    handleInitiateCheckout(planName)
+    
+    // Redirecionar para checkout
+    const checkoutUrl = checkoutLinks[planName]
+    if (checkoutUrl) {
+      setTimeout(() => {
+        window.location.href = checkoutUrl
+      }, 100)
     }
   }
 
@@ -281,16 +333,16 @@ export default function VendasPage() {
           {/* Hero Section with Emotional Appeal */}
           <div className="text-center mb-12 sm:mb-20">
             <div className="mb-4 sm:mb-6 inline-block">
-              <span className="text-[#ffd700] text-xs sm:text-sm font-bold uppercase tracking-widest">Transforme seu negócio hoje</span>
+              <span className="text-[#ffd700] text-xs sm:text-sm font-bold uppercase tracking-widest">⚡ Solução Completa para Automação</span>
             </div>
             
             <h2 className="text-white text-4xl sm:text-5xl md:text-7xl font-black mb-4 sm:mb-6 leading-tight">
-              Desbloqueie Todo o Potencial do
-              <span className="bg-gradient-to-r from-[#ffd700] via-[#ff6b6b] to-[#5a5af6] bg-clip-text text-transparent"> Mega Pack 2500X</span>
+              Economize <span className="text-[#ffd700]">100+ horas por mês</span> com
+              <span className="bg-gradient-to-r from-[#ffd700] via-[#ff6b6b] to-[#5a5af6] bg-clip-text text-transparent"> Automação Inteligente</span>
             </h2>
             
             <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-              Acesso a <span className="text-[#ffd700] font-bold">2500+ templates premium</span>, prompts de IA avançados e ferramentas que vão <span className="text-[#ff6b6b] font-bold">multiplicar sua produtividade</span> e transformar seus resultados em semanas, não meses.
+              Cansado de trabalhar manualmente? Acesso a <span className="text-[#ffd700] font-bold">2500+ templates prontos</span>, prompts de IA que funcionam e ferramentas que <span className="text-[#ff6b6b] font-bold">multiplicam seus resultados</span> enquanto você dorme. Implementação em minutos, resultados em dias.
             </p>
 
             <div className="flex flex-col gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
@@ -424,19 +476,10 @@ export default function VendasPage() {
                     {/* CTA Button - High Conversion */}
                     <button
                       onClick={() => {
-                        const packageId = plan.name === 'Pacote Normal' ? 'pkg_normal_1990' : plan.name === 'Pacote Básico' ? 'pkg_basico_2790' : 'pkg_vip_3790'
-                        const price = plan.name === 'Pacote Normal' ? 19.90 : plan.name === 'Pacote Básico' ? 27.90 : 37.90
-                        
-                        // Rastrear eventos Meta Pixel
-                        onAddToCart(packageId, plan.name, price)
+                        // Rastrear eventos Meta Pixel conforme padrões Meta
+                        handleAddToCart(plan.name)
                         handleAddPaymentInfo(plan.name)
-                        onInitiateCheckout(packageId, plan.name, price)
                         handleCheckout(plan.name)
-                        
-                        // Redirecionar para checkout payment após rastreamento
-                        setTimeout(() => {
-                          window.location.href = checkoutLinks[plan.name]
-                        }, 100)
                       }}
                       className={`w-full py-3 sm:py-4 rounded-lg font-bold mb-6 sm:mb-8 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base ${plan.ctaColor}`}
                     >
