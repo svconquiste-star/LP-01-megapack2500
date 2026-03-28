@@ -220,10 +220,10 @@ export default function VendasPage() {
     return `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
   }
 
-  const handlePlanClick = (planName: string) => {
+  const handlePlanClick = (planName: string): void => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
-      const value = getProductValue(planName)
-      const prodId = getProductId(planName)
+      const value: number = getProductValue(planName)
+      const prodId: string = getProductId(planName)
       
       // ViewContent - Visualização do plano
       (window as any).fbq('track', 'ViewContent', {
@@ -237,10 +237,10 @@ export default function VendasPage() {
     }
   }
 
-  const handleAddToCart = (planName: string) => {
+  const handleAddToCart = (planName: string): void => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
-      const value = getProductValue(planName)
-      const prodId = getProductId(planName)
+      const value: number = getProductValue(planName)
+      const prodId: string = getProductId(planName)
       
       // AddToCart - Adicionar ao carrinho
       (window as any).fbq('track', 'AddToCart', {
@@ -254,10 +254,10 @@ export default function VendasPage() {
     }
   }
 
-  const handleInitiateCheckout = (planName: string) => {
+  const handleInitiateCheckout = (planName: string): void => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
-      const value = getProductValue(planName)
-      const prodId = getProductId(planName)
+      const value: number = getProductValue(planName)
+      const prodId: string = getProductId(planName)
       
       // InitiateCheckout - Iniciar checkout
       (window as any).fbq('track', 'InitiateCheckout', {
@@ -271,10 +271,10 @@ export default function VendasPage() {
     }
   }
 
-  const handleAddPaymentInfo = (planName: string) => {
+  const handleAddPaymentInfo = (planName: string): void => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
-      const value = getProductValue(planName)
-      const prodId = getProductId(planName)
+      const value: number = getProductValue(planName)
+      const prodId: string = getProductId(planName)
       
       // AddPaymentInfo - Adicionar informações de pagamento
       (window as any).fbq('track', 'AddPaymentInfo', {
@@ -288,13 +288,13 @@ export default function VendasPage() {
     }
   }
 
-  const handleCheckout = (planName: string) => {
+  const handleCheckout = (planName: string): void => {
     // Disparar AddToCart e InitiateCheckout antes de redirecionar
     handleAddToCart(planName)
     handleInitiateCheckout(planName)
     
     // Redirecionar para checkout
-    const checkoutUrl = checkoutLinks[planName]
+    const checkoutUrl: string | undefined = checkoutLinks[planName]
     if (checkoutUrl) {
       setTimeout(() => {
         window.location.href = checkoutUrl
