@@ -223,13 +223,13 @@ export default function VendasPage() {
   const handlePlanClick = (planName: string) => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       const value = getProductValue(planName)
-      const contentId = getProductId(planName)
+      const prodId = getProductId(planName)
       
       // ViewContent - Visualização do plano
       (window as any).fbq('track', 'ViewContent', {
         content_name: planName,
         content_type: 'product',
-        content_id: contentId,
+        content_id: prodId,
         value: value,
         currency: 'BRL',
         event_id: generateEventId()
@@ -240,13 +240,13 @@ export default function VendasPage() {
   const handleAddToCart = (planName: string) => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       const value = getProductValue(planName)
-      const contentId = getProductId(planName)
+      const prodId = getProductId(planName)
       
       // AddToCart - Adicionar ao carrinho
       (window as any).fbq('track', 'AddToCart', {
         content_name: planName,
         content_type: 'product',
-        content_id: contentId,
+        content_id: prodId,
         value: value,
         currency: 'BRL',
         event_id: generateEventId()
@@ -257,13 +257,13 @@ export default function VendasPage() {
   const handleInitiateCheckout = (planName: string) => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       const value = getProductValue(planName)
-      const contentId = getProductId(planName)
+      const prodId = getProductId(planName)
       
       // InitiateCheckout - Iniciar checkout
       (window as any).fbq('track', 'InitiateCheckout', {
         content_name: planName,
         content_type: 'product',
-        content_id: contentId,
+        content_id: prodId,
         value: value,
         currency: 'BRL',
         event_id: generateEventId()
@@ -274,13 +274,13 @@ export default function VendasPage() {
   const handleAddPaymentInfo = (planName: string) => {
     if (typeof window !== 'undefined' && (window as any).fbq) {
       const value = getProductValue(planName)
-      const contentId = getProductId(planName)
+      const prodId = getProductId(planName)
       
       // AddPaymentInfo - Adicionar informações de pagamento
       (window as any).fbq('track', 'AddPaymentInfo', {
         content_name: planName,
         content_type: 'product',
-        content_id: contentId,
+        content_id: prodId,
         value: value,
         currency: 'BRL',
         event_id: generateEventId()
@@ -634,8 +634,8 @@ export default function VendasPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">🚀 Transformação Rápida</h4>
-                  <p className="text-gray-400 text-xs sm:text-sm">Veja resultados em dias, não meses. Comece a usar os templates imediatamente após a compra.</p>
+                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">🚀 Economize 100+ Horas/Mês</h4>
+                  <p className="text-gray-400 text-xs sm:text-sm">Automatize tarefas repetitivas e recupere tempo para o que realmente importa. Resultados em dias, não meses.</p>
                 </div>
               </div>
 
@@ -646,8 +646,8 @@ export default function VendasPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-white font-bold mb-2">✨ Qualidade Premium</h4>
-                  <p className="text-gray-400 text-sm">Todos os templates foram criados por especialistas e testados em produção real.</p>
+                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">✨ 2500+ Templates Prontos</h4>
+                  <p className="text-gray-400 text-xs sm:text-sm">Não reinvente a roda. Use templates testados em produção real por centenas de profissionais.</p>
                 </div>
               </div>
 
@@ -658,8 +658,8 @@ export default function VendasPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">❤️ Suporte Dedicado</h4>
-                  <p className="text-gray-400 text-xs sm:text-sm">Equipe de especialistas pronta para ajudar com dúvidas e orientações personalizadas.</p>
+                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">❤️ Suporte Especializado</h4>
+                  <p className="text-gray-400 text-xs sm:text-sm">Equipe de especialistas pronta para ajudar com implementação e otimização dos seus fluxos.</p>
                 </div>
               </div>
 
@@ -670,8 +670,8 @@ export default function VendasPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">🛡️ Garantia 100%</h4>
-                  <p className="text-gray-400 text-xs sm:text-sm">7 dias de garantia de reembolso total se não ficar satisfeito. Sem perguntas.</p>
+                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">🛡️ Garantia 7 Dias 100%</h4>
+                  <p className="text-gray-400 text-xs sm:text-sm">Teste sem risco. Se não gostar, reembolso total. Sem perguntas, sem burocracia.</p>
                 </div>
               </div>
 
@@ -683,7 +683,7 @@ export default function VendasPage() {
                 </div>
                 <div>
                   <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">⏱️ Acesso Vitalício</h4>
-                  <p className="text-gray-400 text-xs sm:text-sm">Pague uma vez, use para sempre. Sem renovações, sem surpresas, sem limites.</p>
+                  <p className="text-gray-400 text-xs sm:text-sm">Pague uma vez, use para sempre. Sem renovações, sem surpresas, sem limites de uso.</p>
                 </div>
               </div>
 
@@ -694,8 +694,8 @@ export default function VendasPage() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">📈 ROI Garantido</h4>
-                  <p className="text-gray-400 text-xs sm:text-sm">Clientes recuperam seu investimento em média em 2-3 semanas de uso.</p>
+                  <h4 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">📈 ROI em 2-3 Semanas</h4>
+                  <p className="text-gray-400 text-xs sm:text-sm">Clientes recuperam investimento rapidamente. Alguns veem resultados em dias.</p>
                 </div>
               </div>
             </div>
