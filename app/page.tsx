@@ -324,39 +324,15 @@ export default function VendasPage() {
           <div className="mb-16 sm:mb-24 bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-2xl p-8 sm:p-12">
             <h3 className="text-white text-2xl sm:text-3xl font-bold text-center mb-12">Veja a Transformação</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              {/* Before */}
-              <div className="text-center">
-                <div className="bg-[#ff6b6b]/20 border-2 border-[#ff6b6b] rounded-xl p-8 mb-4">
-                  <Clock className="text-[#ff6b6b] mx-auto mb-4" size={48} />
-                  <h4 className="text-white text-xl font-bold mb-2">ANTES</h4>
-                  <p className="text-gray-300 text-lg font-semibold">3 horas de trabalho manual</p>
-                  <p className="text-gray-400 text-sm mt-2">Tarefas repetitivas, cansativas e improdutivas</p>
-                </div>
-              </div>
-
-              {/* Arrow */}
-              <div className="hidden md:flex justify-center">
-                <div className="text-[#ffd700] text-5xl">→</div>
-              </div>
-
-              {/* After */}
-              <div className="text-center md:col-span-1">
-                <div className="bg-[#5a5af6]/20 border-2 border-[#5a5af6] rounded-xl p-8 mb-4">
-                  <Zap className="text-[#5a5af6] mx-auto mb-4" size={48} />
-                  <h4 className="text-white text-xl font-bold mb-2">DEPOIS</h4>
-                  <p className="text-gray-300 text-lg font-semibold">2 minutos com automação</p>
-                  <p className="text-gray-400 text-sm mt-2">Fluxo rodando automaticamente enquanto você trabalha</p>
-                </div>
-              </div>
-
-              {/* Mobile Arrow */}
-              <div className="md:hidden flex justify-center">
-                <div className="text-[#ffd700] text-4xl">↓</div>
-              </div>
+            <div className="flex justify-center mb-8">
+              <img 
+                src="/img/06.png" 
+                alt="Desafio vs Sucesso - Antes e Depois com Templates N8N"
+                className="w-full max-w-4xl rounded-xl shadow-lg"
+              />
             </div>
 
-            <div className="text-center mt-8">
+            <div className="text-center">
               <p className="text-[#ffd700] text-lg font-bold">Economize 2h 58min por dia</p>
               <p className="text-gray-400 text-sm mt-2">Multiplique sua produtividade sem esforço extra</p>
             </div>
