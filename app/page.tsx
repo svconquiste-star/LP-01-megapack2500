@@ -161,7 +161,7 @@ export default function VendasPage() {
       ],
       icon: Sparkles,
       color: '#ff6b6b',
-      cta: 'Começar Agora',
+      cta: '🚀 Começar Automação Agora',
       ctaColor: 'bg-[#2a2a3e] text-white hover:bg-[#3a3a4e]',
       popular: false,
       bonus: null
@@ -181,7 +181,7 @@ export default function VendasPage() {
       ],
       icon: Zap,
       color: '#5a5af6',
-      cta: 'Desbloquear Acesso',
+      cta: '⚡ Ativar Templates Agora',
       ctaColor: 'bg-[#5a5af6] text-white hover:bg-[#7a7aff]',
       popular: false,
       bonus: null
@@ -201,7 +201,7 @@ export default function VendasPage() {
       ],
       icon: Crown,
       color: '#ffd700',
-      cta: 'Garantir Acesso VIP',
+      cta: '🔥 Garantir Acesso VIP Agora',
       ctaColor: 'bg-gradient-to-r from-[#ffd700] to-[#ffed4e] text-[#1a1a2e] hover:shadow-lg hover:shadow-[#ffd700]/30',
       popular: true,
       bonus: null
@@ -281,27 +281,27 @@ export default function VendasPage() {
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Urgency Banner */}
-          <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-gradient-to-r from-[#ff6b6b]/20 to-[#ffd700]/20 border border-[#ff6b6b]/50 rounded-xl flex flex-col sm:flex-row items-center gap-2 sm:gap-3 animate-pulse">
-            <AlertCircle className="text-[#ff6b6b] flex-shrink-0" size={20} />
+          <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-gradient-to-r from-[#ff6b6b]/30 to-[#ffd700]/30 border-2 border-[#ff6b6b] rounded-xl flex flex-col sm:flex-row items-center gap-2 sm:gap-3 animate-pulse shadow-lg shadow-[#ff6b6b]/20">
+            <AlertCircle className="text-[#ff6b6b] flex-shrink-0" size={24} />
             <div className="flex-1 text-center sm:text-left">
-              <p className="text-white font-bold text-sm">⏰ Oferta por tempo limitado!</p>
-              <p className="text-gray-300 text-xs">Tempo restante: <span className="font-bold text-[#ffd700]">{timeLeft}</span></p>
+              <p className="text-white font-bold text-sm sm:text-base">🚨 PREÇO SOBE HOJE! Últimas horas com desconto!</p>
+              <p className="text-gray-300 text-xs sm:text-sm">Tempo restante: <span className="font-bold text-[#ffd700] text-sm">{timeLeft}</span></p>
             </div>
           </div>
 
           {/* Hero Section with Emotional Appeal */}
           <div className="text-center mb-12 sm:mb-20">
             <div className="mb-4 sm:mb-6 inline-block">
-              <span className="text-[#ffd700] text-xs sm:text-sm font-bold uppercase tracking-widest">⚡ Solução Completa para Automação</span>
+              <span className="text-[#ffd700] text-xs sm:text-sm font-bold uppercase tracking-widest">⚡ Automação Sem Programação</span>
             </div>
             
             <h2 className="text-white text-4xl sm:text-5xl md:text-7xl font-black mb-4 sm:mb-6 leading-tight">
-              Economize <span className="text-[#ffd700]">100+ horas por mês</span> com
-              <span className="bg-gradient-to-r from-[#ffd700] via-[#ff6b6b] to-[#5a5af6] bg-clip-text text-transparent"> Automação Inteligente</span>
+              Automatize tarefas que levam <span className="text-[#ffd700]">horas em menos de 2 minutos</span>
+              <span className="bg-gradient-to-r from-[#ffd700] via-[#ff6b6b] to-[#5a5af6] bg-clip-text text-transparent"> Sem programar</span>
             </h2>
             
             <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-              Cansado de trabalhar manualmente? Acesso a <span className="text-[#ffd700] font-bold">2500+ templates prontos</span>, prompts de IA que funcionam e ferramentas que <span className="text-[#ff6b6b] font-bold">multiplicam seus resultados</span> enquanto você dorme. Implementação em minutos, resultados em dias.
+              Pare de perder tempo com trabalho manual. Acesso a <span className="text-[#ffd700] font-bold">2500+ templates prontos</span>, automações que funcionam e ferramentas que <span className="text-[#ff6b6b] font-bold">multiplicam seus resultados</span> enquanto você dorme. Ativa em minutos, resultados em dias.
             </p>
 
             <div className="flex flex-col gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
@@ -317,6 +317,48 @@ export default function VendasPage() {
                 <Check size={18} />
                 <span className="font-semibold text-sm sm:text-base">Garantia 7 Dias</span>
               </div>
+            </div>
+          </div>
+
+          {/* Before/After Visual Transformation */}
+          <div className="mb-16 sm:mb-24 bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-2xl p-8 sm:p-12">
+            <h3 className="text-white text-2xl sm:text-3xl font-bold text-center mb-12">Veja a Transformação</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              {/* Before */}
+              <div className="text-center">
+                <div className="bg-[#ff6b6b]/20 border-2 border-[#ff6b6b] rounded-xl p-8 mb-4">
+                  <Clock className="text-[#ff6b6b] mx-auto mb-4" size={48} />
+                  <h4 className="text-white text-xl font-bold mb-2">ANTES</h4>
+                  <p className="text-gray-300 text-lg font-semibold">3 horas de trabalho manual</p>
+                  <p className="text-gray-400 text-sm mt-2">Tarefas repetitivas, cansativas e improdutivas</p>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div className="hidden md:flex justify-center">
+                <div className="text-[#ffd700] text-5xl">→</div>
+              </div>
+
+              {/* After */}
+              <div className="text-center md:col-span-1">
+                <div className="bg-[#5a5af6]/20 border-2 border-[#5a5af6] rounded-xl p-8 mb-4">
+                  <Zap className="text-[#5a5af6] mx-auto mb-4" size={48} />
+                  <h4 className="text-white text-xl font-bold mb-2">DEPOIS</h4>
+                  <p className="text-gray-300 text-lg font-semibold">2 minutos com automação</p>
+                  <p className="text-gray-400 text-sm mt-2">Fluxo rodando automaticamente enquanto você trabalha</p>
+                </div>
+              </div>
+
+              {/* Mobile Arrow */}
+              <div className="md:hidden flex justify-center">
+                <div className="text-[#ffd700] text-4xl">↓</div>
+              </div>
+            </div>
+
+            <div className="text-center mt-8">
+              <p className="text-[#ffd700] text-lg font-bold">Economize 2h 58min por dia</p>
+              <p className="text-gray-400 text-sm mt-2">Multiplique sua produtividade sem esforço extra</p>
             </div>
           </div>
 
@@ -353,6 +395,40 @@ export default function VendasPage() {
               <p className="text-white font-black text-3xl sm:text-4xl mb-2">4.9/5</p>
               <p className="text-gray-400 text-xs sm:text-sm font-semibold">Avaliação Média</p>
               <p className="text-gray-500 text-xs mt-2">Baseado em 1.200+ avaliações</p>
+            </div>
+          </div>
+
+          {/* How It Works - 3 Simple Steps */}
+          <div className="mb-16 sm:mb-24">
+            <h3 className="text-white text-2xl sm:text-3xl font-bold text-center mb-12">Como Funciona (3 Passos Simples)</h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {/* Step 1 */}
+              <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-6 sm:p-8 text-center hover:border-[#5a5af6] transition-all">
+                <div className="bg-[#5a5af6]/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-[#5a5af6] text-3xl font-bold">1</span>
+                </div>
+                <h4 className="text-white text-lg font-bold mb-3">Escolha um Template</h4>
+                <p className="text-gray-400 text-sm">Selecione entre 2500+ automações prontas para usar. Não precisa de conhecimento técnico.</p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-6 sm:p-8 text-center hover:border-[#ffd700] transition-all">
+                <div className="bg-[#ffd700]/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-[#ffd700] text-3xl font-bold">2</span>
+                </div>
+                <h4 className="text-white text-lg font-bold mb-3">Clique para Ativar</h4>
+                <p className="text-gray-400 text-sm">Um clique e a automação está pronta. Customize conforme necessário em segundos.</p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-6 sm:p-8 text-center hover:border-[#ff6b6b] transition-all">
+                <div className="bg-[#ff6b6b]/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-[#ff6b6b] text-3xl font-bold">3</span>
+                </div>
+                <h4 className="text-white text-lg font-bold mb-3">Pronto — Funcionando</h4>
+                <p className="text-gray-400 text-sm">Sua automação roda 24/7. Você recebe os resultados enquanto trabalha em outras coisas.</p>
+              </div>
             </div>
           </div>
 
@@ -543,40 +619,73 @@ export default function VendasPage() {
           <div className="mb-16 sm:mb-24">
             <h3 className="text-white text-2xl sm:text-3xl font-bold mb-8 sm:mb-12 text-center">Histórias de Sucesso de Nossos Clientes</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+              {/* Testimonial 1 */}
               <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-4 sm:p-6 hover:border-[#5a5af6] transition-all">
-                <div className="flex gap-1 mb-3 sm:mb-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#5a5af6] to-[#7a7aff] flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-lg">JS</span>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs font-bold">João Silva</p>
+                    <p className="text-gray-500 text-xs">CEO, Agência Digital</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={14} className="text-[#ffd700]" fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Transformou completamente meu negócio! Os templates N8N economizaram 40h/mês de desenvolvimento. Recuperei meu investimento em 2 semanas!&quot;</p>
-                <p className="text-gray-400 text-xs font-bold">João Silva</p>
-                <p className="text-gray-500 text-xs">CEO, Agência Digital Silva</p>
-                <p className="text-gray-500 text-xs mt-1">São Paulo, SP</p>
+                <div className="bg-[#5a5af6]/10 border border-[#5a5af6]/30 rounded-lg p-3 mb-3">
+                  <p className="text-[#5a5af6] text-sm font-bold">📊 Resultado: 40h/mês economizadas</p>
+                </div>
+                <p className="text-gray-300 text-xs sm:text-sm mb-3">&quot;Transformou completamente meu negócio! Os templates N8N economizaram 40h/mês de desenvolvimento. Recuperei meu investimento em 2 semanas!&quot;</p>
+                <p className="text-gray-500 text-xs">São Paulo, SP</p>
               </div>
 
+              {/* Testimonial 2 */}
               <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-4 sm:p-6 hover:border-[#ff6b6b] transition-all">
-                <div className="flex gap-1 mb-3 sm:mb-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#ff6b6b] to-[#ff8787] flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-lg">MS</span>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs font-bold">Maria Santos</p>
+                    <p className="text-gray-500 text-xs">Marketing Digital</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={14} className="text-[#ffd700]" fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Os prompts de IA e templates Typebot aumentaram minhas conversões em 156%. Melhor investimento que fiz em automação!&quot;</p>
-                <p className="text-gray-400 text-xs font-bold">Maria Santos</p>
-                <p className="text-gray-500 text-xs">Especialista em Marketing Digital</p>
-                <p className="text-gray-500 text-xs mt-1">Rio de Janeiro, RJ</p>
+                <div className="bg-[#ff6b6b]/10 border border-[#ff6b6b]/30 rounded-lg p-3 mb-3">
+                  <p className="text-[#ff6b6b] text-sm font-bold">📈 Resultado: +156% conversão</p>
+                </div>
+                <p className="text-gray-300 text-xs sm:text-sm mb-3">&quot;Os prompts de IA e templates Typebot aumentaram minhas conversões em 156%. Melhor investimento que fiz em automação!&quot;</p>
+                <p className="text-gray-500 text-xs">Rio de Janeiro, RJ</p>
               </div>
 
+              {/* Testimonial 3 */}
               <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-4 sm:p-6 hover:border-[#ffd700] transition-all">
-                <div className="flex gap-1 mb-3 sm:mb-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#ffd700] to-[#ffed4e] flex items-center justify-center flex-shrink-0">
+                    <span className="text-[#1a1a2e] font-bold text-lg">PC</span>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs font-bold">Pedro Costa</p>
+                    <p className="text-gray-500 text-xs">Diretor de Operações</p>
+                  </div>
+                </div>
+                <div className="flex gap-1 mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={14} className="text-[#ffd700]" fill="currentColor" />
                   ))}
                 </div>
-                <p className="text-gray-300 text-xs sm:text-sm mb-3 sm:mb-4">&quot;Acesso vitalício é perfeito para agências! Todos os meus clientes usam os templates. ROI garantido!&quot;</p>
-                <p className="text-gray-400 text-xs font-bold">Pedro Costa</p>
-                <p className="text-gray-500 text-xs">Diretor de Operações, TechFlow</p>
-                <p className="text-gray-500 text-xs mt-1">Belo Horizonte, MG</p>
+                <div className="bg-[#ffd700]/10 border border-[#ffd700]/30 rounded-lg p-3 mb-3">
+                  <p className="text-[#ffd700] text-sm font-bold">💰 Resultado: ROI garantido</p>
+                </div>
+                <p className="text-gray-300 text-xs sm:text-sm mb-3">&quot;Acesso vitalício é perfeito para agências! Todos os meus clientes usam os templates. ROI garantido!&quot;</p>
+                <p className="text-gray-500 text-xs">Belo Horizonte, MG</p>
               </div>
             </div>
           </div>
