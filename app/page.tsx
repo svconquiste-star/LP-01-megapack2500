@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Check, Zap, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle } from 'lucide-react'
+import { ArrowLeft, Check, Zap, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle, MessageCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useMetaPixelTracker } from '@/lib/useMetaPixelTracker'
 
@@ -874,10 +874,10 @@ export default function VendasPage() {
               Tem dúvidas? Entre em contato com nosso suporte
             </p>
             <a
-              href="mailto:suporte@megapack2500x.com"
+              href="mailto:megapack2500x@multinexo.com.br"
               className="text-[#7a7aff] hover:text-[#9a9aff] font-bold transition-colors text-sm sm:text-base"
             >
-              suporte@megapack2500x.com
+              megapack2500x@multinexo.com.br
             </a>
           </div>
         </div>
@@ -907,6 +907,17 @@ export default function VendasPage() {
             </div>
           </div>
         )}
+
+        {/* WhatsApp Floating Button */}
+        <a
+          href="https://wa.me/5531910466894"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center"
+          title="Contato via WhatsApp"
+        >
+          <MessageCircle size={24} />
+        </a>
       </div>
     </>
   )
