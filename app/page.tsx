@@ -151,18 +151,18 @@ export default function VendasPage() {
       name: 'Pacote VIP',
       price: '37,90',
       pricePerMonth: '',
-      value: 'Solução completa para dominar automação',
+      value: 'Tudo que você precisa para automatizar tudo',
       savings: 'ECONOMIZE 63%',
       originalPrice: '102,90',
       features: [
-        '2500+ Templates N8N (Vitalício)',
-        'Super Fluxos Avançados',
-        'Self-Hosted Softwares',
-        'Bônus Exclusivos + Suporte'
+        '2500+ Automações Prontas (Sem Código)',
+        'Responde Clientes Automaticamente',
+        'Organiza Tudo Sozinho',
+        'Funciona 24/7 + Suporte'
       ],
       icon: Crown,
       color: '#ffd700',
-      cta: '🔥 Garantir Acesso VIP Agora',
+      cta: '� Quero Testar Agora!',
       ctaColor: 'bg-gradient-to-r from-[#ffd700] to-[#ffed4e] text-[#1a1a2e] hover:shadow-lg hover:shadow-[#ffd700]/30',
       popular: true,
       bonus: null
@@ -255,12 +255,12 @@ export default function VendasPage() {
             </div>
             
             <h2 className="text-white text-4xl sm:text-5xl md:text-7xl font-black mb-4 sm:mb-6 leading-tight">
-              Automatize tarefas que levam <span className="text-[#ffd700]">horas em menos de 2 minutos</span>
-              <span className="bg-gradient-to-r from-[#ffd700] via-[#ff6b6b] to-[#5a5af6] bg-clip-text text-transparent"> Sem programar</span>
+              E Agora <span className="text-[#25D366]">Tudo Roda Sozinho</span>
+              <span className="block text-[#ffd700] mt-2">Pare de Trabalhar Manualmente</span>
             </h2>
             
             <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed px-2">
-              Pare de perder tempo com trabalho manual. Acesso a <span className="text-[#ffd700] font-bold">2500+ templates prontos</span>, automações que funcionam e ferramentas que <span className="text-[#ff6b6b] font-bold">multiplicam seus resultados</span> enquanto você dorme. Ativa em minutos, resultados em dias.
+              Mais de <span className="text-[#25D366] font-bold">2500 automações prontas</span> que fazem tudo sozinho. <span className="text-[#ffd700] font-bold">Sem código, sem programação, sem complicação.</span> Ativa em segundos e funciona 24/7 enquanto você trabalha em outras coisas.
             </p>
 
             <div className="flex flex-col gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
@@ -292,8 +292,8 @@ export default function VendasPage() {
             </div>
 
             <div className="text-center">
-              <p className="text-[#ffd700] text-lg font-bold">Economize 2h 58min por dia</p>
-              <p className="text-gray-400 text-sm mt-2">Multiplique sua produtividade sem esforço extra</p>
+              <p className="text-[#25D366] text-lg font-bold">Pare de Trabalhar Manualmente</p>
+              <p className="text-gray-400 text-sm mt-2">Tudo funcionando sozinho 24/7 enquanto você ganha produtividade</p>
             </div>
           </div>
 
@@ -335,7 +335,7 @@ export default function VendasPage() {
 
           {/* How It Works - 3 Simple Steps */}
           <div className="mb-16 sm:mb-24">
-            <h3 className="text-white text-2xl sm:text-3xl font-bold text-center mb-12">Como Funciona (3 Passos Simples)</h3>
+            <h3 className="text-white text-2xl sm:text-3xl font-bold text-center mb-12">3 Passos Simples (Sem Código)</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {/* Step 1 */}
@@ -343,26 +343,26 @@ export default function VendasPage() {
                 <div className="bg-[#5a5af6]/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-[#5a5af6] text-3xl font-bold">1</span>
                 </div>
-                <h4 className="text-white text-lg font-bold mb-3">Escolha um Template</h4>
-                <p className="text-gray-400 text-sm">Selecione entre 2500+ automações prontas para usar. Não precisa de conhecimento técnico.</p>
+                <h4 className="text-white text-lg font-bold mb-3">Escolha uma Automação</h4>
+                <p className="text-gray-400 text-sm">Selecione entre 2500+ automações prontas. Sem código, sem complicação.</p>
               </div>
 
               {/* Step 2 */}
-              <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-6 sm:p-8 text-center hover:border-[#ffd700] transition-all">
-                <div className="bg-[#ffd700]/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[#ffd700] text-3xl font-bold">2</span>
+              <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-6 sm:p-8 text-center hover:border-[#25D366] transition-all">
+                <div className="bg-[#25D366]/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-[#25D366] text-3xl font-bold">2</span>
                 </div>
-                <h4 className="text-white text-lg font-bold mb-3">Clique para Ativar</h4>
-                <p className="text-gray-400 text-sm">Um clique e a automação está pronta. Customize conforme necessário em segundos.</p>
+                <h4 className="text-white text-lg font-bold mb-3">Ativa em Segundos</h4>
+                <p className="text-gray-400 text-sm">Um clique e pronto. Sua automação já está funcionando, sem esperar.</p>
               </div>
 
               {/* Step 3 */}
-              <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-6 sm:p-8 text-center hover:border-[#ff6b6b] transition-all">
-                <div className="bg-[#ff6b6b]/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[#ff6b6b] text-3xl font-bold">3</span>
+              <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-xl p-6 sm:p-8 text-center hover:border-[#ffd700] transition-all">
+                <div className="bg-[#ffd700]/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-[#ffd700] text-3xl font-bold">3</span>
                 </div>
-                <h4 className="text-white text-lg font-bold mb-3">Pronto — Funcionando</h4>
-                <p className="text-gray-400 text-sm">Sua automação roda 24/7. Você recebe os resultados enquanto trabalha em outras coisas.</p>
+                <h4 className="text-white text-lg font-bold mb-3">Tudo Roda Sozinho</h4>
+                <p className="text-gray-400 text-sm">Funciona 24/7 enquanto você trabalha em outras coisas. Sem fazer nada.</p>
               </div>
             </div>
           </div>
@@ -370,8 +370,8 @@ export default function VendasPage() {
           {/* Plans Grid - Optimized for Conversion */}
           <div className="mb-16 sm:mb-24">
             <div className="text-center mb-8 sm:mb-12">
-              <h3 className="text-white text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Escolha seu Plano Perfeito</h3>
-              <p className="text-gray-400 text-base sm:text-lg px-2">Acesso vitalício a TEMPLATES N8N + Todos os Benefícios</p>
+              <h3 className="text-white text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Comece Agora</h3>
+              <p className="text-gray-400 text-base sm:text-lg px-2">Tudo que você precisa para automatizar e ganhar produtividade</p>
             </div>
 
             <div className="flex justify-center gap-4 sm:gap-8">
