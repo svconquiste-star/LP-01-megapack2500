@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, Check, Zap, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle, MessageCircle } from 'lucide-react'
+import { ArrowLeft, Check, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle, MessageCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useMetaPixelTracker } from '@/lib/useMetaPixelTracker'
 
@@ -148,45 +148,6 @@ export default function VendasPage() {
 
   const plans: PlanData[] = [
     {
-      name: 'Pacote Normal',
-      price: '19,90',
-      pricePerMonth: '',
-      value: 'Comece a automatizar hoje',
-      savings: 'ECONOMIZE 43%',
-      originalPrice: '35,00',
-      features: [
-        '2500+ Templates N8N (Vitalício)',
-        'Automação básica em minutos',
-        'Sem renovação - pague uma vez'
-      ],
-      icon: Sparkles,
-      color: '#ff6b6b',
-      cta: '🚀 Começar Automação Agora',
-      ctaColor: 'bg-[#2a2a3e] text-white hover:bg-[#3a3a4e]',
-      popular: false,
-      bonus: null
-    },
-    {
-      name: 'Pacote Básico',
-      price: '27,90',
-      pricePerMonth: '',
-      value: 'Melhor custo-benefício para crescimento',
-      savings: 'ECONOMIZE 53%',
-      originalPrice: '59,90',
-      features: [
-        '2500+ Templates N8N + Prompts IA',
-        'Automação + Geração de Conteúdo',
-        'Chatbots e Fluxos Avançados',
-        'Ferramentas SaaS Integradas'
-      ],
-      icon: Zap,
-      color: '#5a5af6',
-      cta: '⚡ Ativar Templates Agora',
-      ctaColor: 'bg-[#5a5af6] text-white hover:bg-[#7a7aff]',
-      popular: false,
-      bonus: null
-    },
-    {
       name: 'Pacote VIP',
       price: '37,90',
       pricePerMonth: '',
@@ -194,7 +155,7 @@ export default function VendasPage() {
       savings: 'ECONOMIZE 63%',
       originalPrice: '102,90',
       features: [
-        'Tudo do Pacote Básico +',
+        '2500+ Templates N8N (Vitalício)',
         'Super Fluxos Avançados',
         'Self-Hosted Softwares',
         'Bônus Exclusivos + Suporte'
@@ -209,9 +170,7 @@ export default function VendasPage() {
   ]
 
   const planPrices: Record<string, number> = {
-    'Pacote VIP': 37.90,
-    'Pacote Básico': 27.90,
-    'Pacote Normal': 19.90
+    'Pacote VIP': 37.90
   }
 
   const generatePixelId = (): string => {
@@ -412,10 +371,10 @@ export default function VendasPage() {
           <div className="mb-16 sm:mb-24">
             <div className="text-center mb-8 sm:mb-12">
               <h3 className="text-white text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Escolha seu Plano Perfeito</h3>
-              <p className="text-gray-400 text-base sm:text-lg px-2">Todos os planos incluem acesso vitalício a TEMPLATES N8N</p>
+              <p className="text-gray-400 text-base sm:text-lg px-2">Acesso vitalício a TEMPLATES N8N + Todos os Benefícios</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
+            <div className="flex justify-center gap-4 sm:gap-8">
               {plans.map((plan) => {
                 const Icon = plan.icon
                 return (
