@@ -162,7 +162,7 @@ export default function VendasPage() {
       ],
       icon: Crown,
       color: '#ffd700',
-      cta: '� Quero Testar Agora!',
+      cta: '🚀 Quero Acesso Agora',
       ctaColor: 'bg-gradient-to-r from-[#ffd700] to-[#ffed4e] text-[#1a1a2e] hover:shadow-lg hover:shadow-[#ffd700]/30',
       popular: true,
       bonus: null
