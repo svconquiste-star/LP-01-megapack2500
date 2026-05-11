@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { ArrowLeft, Check, Crown, Star, TrendingUp, Flame, Users, Award, Heart, Lightbulb, Rocket, Shield, Clock, Sparkles, AlertCircle, MessageCircle } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useMetaPixelTracker } from '@/lib/useMetaPixelTracker'
+import VideoSection from '@/components/VideoSection'
 
 interface PlanData {
   name: string
@@ -366,6 +367,9 @@ export default function VendasPage() {
               </div>
             </div>
           </div>
+
+          {/* Video Section */}
+          <VideoSection />
 
           {/* Plans Grid - Optimized for Conversion */}
           <div className="mb-16 sm:mb-24">
