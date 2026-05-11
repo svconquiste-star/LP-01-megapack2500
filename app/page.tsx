@@ -382,7 +382,7 @@ export default function VendasPage() {
                     key={plan.name}
                     className={`relative rounded-2xl border-2 p-4 sm:p-6 md:p-8 transition-all duration-300 ${
                       plan.popular
-                        ? `border-[#ffd700] bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f1419] ring-2 ring-[#ffd700]/50 transform md:scale-110 md:-translate-y-8 shadow-2xl shadow-[#ffd700]/20 hover:shadow-2xl hover:shadow-[#ffd700]/40`
+                        ? `border-[#ffd700] bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f1419] ring-2 ring-[#ffd700]/50 shadow-2xl shadow-[#ffd700]/20 hover:shadow-2xl hover:shadow-[#ffd700]/40`
                         : `border-[#2a2a3e] bg-[#1a1a2e] hover:border-[#3a3a4e] hover:bg-[#1f1f33] hover:shadow-lg`
                     }`}
                     onClick={() => handlePlanClick(plan.name)}
@@ -478,77 +478,6 @@ export default function VendasPage() {
             </div>
           </div>
 
-          {/* Comparison Table */}
-          <div className="bg-gradient-to-br from-[#1a1a2e] to-[#0f1419] border border-[#2a2a3e] rounded-2xl p-4 sm:p-6 md:p-8 mb-16 sm:mb-24 overflow-x-auto">
-            <h3 className="text-white text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center">Comparação Completa de Pacotes</h3>
-            
-            <table className="w-full text-xs sm:text-sm">
-              <thead>
-                <tr className="border-b border-[#2a2a3e]">
-                  <th className="text-left py-3 sm:py-4 px-2 sm:px-4 text-gray-400 font-semibold">Recurso</th>
-                  <th className="text-center py-3 sm:py-4 px-2 sm:px-4 text-gray-400 font-semibold">Normal</th>
-                  <th className="text-center py-3 sm:py-4 px-2 sm:px-4 text-gray-400 font-semibold">Básico</th>
-                  <th className="text-center py-3 sm:py-4 px-2 sm:px-4 text-[#ffd700] font-bold">VIP ⭐</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-[#2a2a3e] hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 font-semibold">TEMPLATES N8N</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-[#2a2a3e] hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 text-xs sm:text-base">Prompts Midjourney</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-[#2a2a3e] hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 text-xs sm:text-base">Templates Typebot</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-[#2a2a3e] hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 text-xs sm:text-base">SaaS Softwares</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-[#2a2a3e] hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 text-xs sm:text-base">Pack Prompts ChatGPT</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-[#2a2a3e] hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 text-xs sm:text-base">Super Fluxos</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-[#2a2a3e] hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 text-xs sm:text-base">Self-Hosted Softwares</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-                <tr className="border-b border-[#2a2a3e] hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 text-xs sm:text-base">Ferramentas Gratuitas</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-                <tr className="hover:bg-[#2a2a3e]/50">
-                  <td className="py-2 sm:py-4 px-2 sm:px-4 text-gray-300 font-semibold text-xs sm:text-base">Bônus Exclusivos</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4 text-gray-500">-</td>
-                  <td className="text-center py-2 sm:py-4 px-2 sm:px-4"><Check size={16} className="text-green-400 mx-auto" /></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
           {/* Testimonials - Social Proof */}
           <div className="mb-16 sm:mb-24">
